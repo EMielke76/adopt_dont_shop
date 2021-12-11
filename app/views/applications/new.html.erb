@@ -2,24 +2,24 @@
 <%= form_with url: '/applications', method: :post, local: true do |form| %>
   <%= form.label :name %>
   <%= form.text_field :name %>
-
+<br>
   <%= form.label :address %>
   <%= form.text_field :street_address %>
-
+<br>
   <%= form.label :city %>
   <%= form.text_field :city %>
-
+<br>
   <%= form.label :state %>
   <%= form.text_field :state %>
-
+<br>
   <%= form.label :zip_code %>
   <%= form.text_field :zipcode %>
-
+<br>
   <%= form.label :description %>
   <%= form.text_field :description %>
-
-  <%= form.label :status %> 
+<br>
+  <%= form.label :status %>
   <%= form.text_field :status %>
-
+<br>
   <%= form.submit %>
 <%end%>
