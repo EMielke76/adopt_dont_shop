@@ -1,5 +1,10 @@
+<header>
 <h1>New Application</h1>
-<%= form_with url: '/applications', method: :post, local: true do |form| %>
+</header>
+
+<body>
+  <section id="application-form">
+  <%= form_with url: '/applications', method: :post, local: true do |form| %>
   <%= form.label :name %>
   <%= form.text_field :name %>
 <br>
@@ -17,3 +22,5 @@
 <br>
   <%= form.submit %>
 <%end%>
+</section>
+</body>

@@ -18,26 +18,30 @@ RSpec.describe 'New Application' do
       app_1 = Application.create!(name:'Elora Mielke', street_address: '123 Fake Street', city: 'Littleton', state: 'CO', zipcode: '80120')
       visit '/applications/new'
 
-      fill_in "Name", with: "#{app_1.name}"
-      fill_in :street_address, with: "#{app_1.street_address}"
-      fill_in "City", with: "#{app_1.city}"
-      fill_in "State", with: "#{app_1.state}"
-      fill_in :zipcode, with: "#{app_1.zipcode}"
+      within("#application-form") do
+        fill_in "Name", with: "#{app_1.name}"
+        fill_in :street_address, with: "#{app_1.street_address}"
+        fill_in "City", with: "#{app_1.city}"
+        fill_in "State", with: "#{app_1.state}"
+        fill_in :zipcode, with: "#{app_1.zipcode}"
 
-      click_on "Save"
+        click_on "Save"
 
-      expect(current_path).to eq("/applications/#{app_1.id+1}")
+        expect(current_path).to eq("/applications/#{app_1.id+1}")
+      end
 
       visit "/applications/#{app_1.id+1}"
 
-      expect(page).to have_content(app_1.name)
-      expect(page).to have_content(app_1.street_address)
-      expect(page).to have_content(app_1.city)
-      expect(page).to have_content(app_1.state)
-      expect(page).to have_content(app_1.zipcode)
-      expect(page).to have_content(app_1.description)
-      expect(page).to have_content(app_1.status)
-    end 
+      within("#applicant-info") do
+        expect(page).to have_content(app_1.name)
+        expect(page).to have_content(app_1.street_address)
+        expect(page).to have_content(app_1.city)
+        expect(page).to have_content(app_1.state)
+        expect(page).to have_content(app_1.zipcode)
+        expect(page).to have_content(app_1.description)
+        expect(page).to have_content(app_1.status)
+      end
+    end
 
     it 'displays an error message when the form is not fully completed' do
 
