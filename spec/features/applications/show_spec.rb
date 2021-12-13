@@ -42,12 +42,35 @@ RSpec.describe 'Application Show' do
 
     expect(page).to have_content("Add a Pet to this Application")
 
-
-    fill_in(:pet_name, with: "Luna")
-    click_on("Search")
+    within('#search-pet')do
+      fill_in(:pet_name, with: "Luna")
+      click_on("Search")
+    end
 
     expect(current_path).to eq("/applications/#{application_2.id}")
     expect(page).to have_content(pet_3.name)
-    
+  end
+
+  it 'provides a link to add a searched pet to an application' do
+
+    visit "/applications/#{application_2.id}"
+
+    within('#search-pet')do
+      fill_in(:pet_name, with: "Luna")
+      click_on("Search")
+    end
+      expect(page).to have_content(pet_3.name)
+      expect(page).to have_content("Adopt Me!")
+
+    within('#search-pet') do
+      click_on("Adopt Me!")
+    end
+
+    expect(current_path).to eq("/applications/#{application_2.id}")
+
+    within('#pet-names') do
+      expect(page).to have_content(pet_3.name)
+      save_and_open_page
+    end
   end
 end
