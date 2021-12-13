@@ -17,7 +17,7 @@ RSpec.describe Application do
   it 'sets defualt settings for certain fields' do
     app_1 = Application.create!(name: 'Bob', street_address: '123 Fake Street', city: 'Nowhere', state: 'CO', zipcode: '90882')
 
-    expect(app_1.description).to eq("I'm a great Dog/Cat Mom/Dad!")
-    expect(app_1.status).to eq("Pending")
+    expect(app_1.description).to eq("")
+    expect(app_1.status).to eq("In Progress")
   end
 end
