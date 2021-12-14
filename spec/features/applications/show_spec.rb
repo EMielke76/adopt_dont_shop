@@ -25,6 +25,9 @@ RSpec.describe 'Application Show' do
       expect(page).to have_content(application_1.city)
       expect(page).to have_content(application_1.state)
       expect(page).to have_content(application_1.zipcode)
+    end
+
+    within('#conditional-info') do
       expect(page).to have_content(application_1.description)
       expect(page).to have_content(application_1.status)
     end
@@ -70,7 +73,29 @@ RSpec.describe 'Application Show' do
 
     within('#pet-names') do
       expect(page).to have_content(pet_3.name)
-      save_and_open_page
     end
+  end
+
+  it 'allows an application to be submited only if 1 or more pets have been added' do
+
+    visit "/applications/#{application_2.id}"
+
+    within('#search-pet') do
+      fill_in(:pet_name, with: "Luna")
+      click_on("Search")
+      click_on("Adopt Me!")
+    end
+
+    expect(page).to have_content("What makes #{application_2.name} a good fit?")
+
+    within('#conditional-info') do
+      fill_in(:description, with: "Ready as I'll ever be!")
+      click_on("submit")
+      expect(current_path).to eq("/applications/#{application_2.id}")
+      expect(page).to have_content("Pending")
+    end
+
+    expect(page).to_not have_content("Add a Pet to this Application")
+    expect(page).to have_content(pet_3.name)
   end
 end
