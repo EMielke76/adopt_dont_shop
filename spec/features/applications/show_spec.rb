@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Application Show' do
   let!(:application_1) {Application.create!(name: "Elora Mielke", street_address: "123 Fake Street", city: "Littleton", state: "CO", zipcode: "80120")}
   let!(:application_2) {Application.create!(name: "Blair Mielke", street_address: "123 Fake Street", city: "Littleton", state: "CO", zipcode: "80120")}
+  let!(:application_3) {Application.create!(name: "Eric Mielke", street_address: "123 Fake Street", city: "Littleton", state: "CO", zipcode: "80120")}
   let!(:shelter_1) {Shelter.create(name: 'Aurora shelter', city: 'Aurora, CO', foster_program: false, rank: 9)}
   let!(:pet_1) {Pet.create!(name: 'Mr. Pirate', breed: 'tuxedo shorthair', age: 5, adoptable: true, shelter_id: shelter_1.id)}
   let!(:pet_2) {Pet.create!(name: 'Clawdia', breed: 'shorthair', age: 3, adoptable: true, shelter_id: shelter_1.id)}
@@ -98,4 +99,11 @@ RSpec.describe 'Application Show' do
     expect(page).to_not have_content("Add a Pet to this Application")
     expect(page).to have_content(pet_3.name)
   end
+
+  it 'does not allow submissions if no pets have been added' do
+
+    visit "/applications/#{application_3.id}"
+
+    expect(page).to_not have_content("What Makes #{application_3.name} a good fit?")
+  end 
 end
