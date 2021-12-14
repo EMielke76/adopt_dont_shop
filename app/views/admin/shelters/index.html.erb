@@ -1,0 +1,9 @@
+<header>
+  <h1>Participating Shelters</h1>
+</header>
+
+<body>
+  <% @shelters.each do |shelter| %>
+  <h3>--<%= shelter.name %></h3>
+  <%end%>
+</body>
