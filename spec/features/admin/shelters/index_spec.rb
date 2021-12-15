@@ -49,7 +49,7 @@ RSpec.describe Admin::SheltersController do
 
   it 'displays all shelters whos pets have pending applications' do
     visit '/admin/shelters'
-    save_and_open_page
+    
     within("#shelters-with-apps") do
       expect(page).to have_content(shelter_2.name)
       expect(page).to have_content(shelter_3.name)
