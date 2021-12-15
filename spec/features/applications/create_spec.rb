@@ -6,7 +6,7 @@ RSpec.describe 'New Application' do
       visit '/applications/new'
 
       expect(page).to have_content("New Application")
-      
+
       within('#application-form') do
         expect(find('form')).to have_content('Name')
         expect(find('form')).to have_content('Address')
@@ -33,7 +33,7 @@ RSpec.describe 'New Application' do
       end
 
       visit "/applications/#{app_1.id+1}"
-
+  
       within("#applicant-info") do
         expect(page).to have_content(app_1.name)
         expect(page).to have_content(app_1.street_address)
@@ -41,6 +41,8 @@ RSpec.describe 'New Application' do
         expect(page).to have_content(app_1.state)
         expect(page).to have_content(app_1.zipcode)
         expect(page).to have_content(app_1.description)
+      end
+      within("#conditional-info") do
         expect(page).to have_content(app_1.status)
       end
     end
