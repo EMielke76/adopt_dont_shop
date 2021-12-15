@@ -9,6 +9,7 @@ RSpec.describe Admin::SheltersController do
   let!(:application_1) {Application.create!(name: "Elora Mielke", street_address: "123 Fake Street", city: "Littleton", state: "CO", zipcode: "80120")}
   let!(:application_2) {Application.create!(name: "Blair Mielke", street_address: "123 Fake Street", city: "Littleton", state: "CO", zipcode: "80120")}
   let!(:application_3) {Application.create!(name: "Eric Mielke", street_address: "123 Fake Street", city: "Littleton", state: "CO", zipcode: "80120", status: "Pending", description: "I'm a great guy")}
+  let!(:application_4) {Application.create!(name: "Bob Mielke", street_address: "123 Fake Street", city: "Littleton", state: "CO", zipcode: "80120", status: "Pending", description: "I'm a great guy")}
 
   let!(:pet_1) {Pet.create!(name: 'Mr. Pirate', breed: 'tuxedo shorthair', age: 5, adoptable: true, shelter_id: shelter_1.id)}
   let!(:pet_2) {Pet.create!(name: 'Clawdia', breed: 'shorthair', age: 3, adoptable: true, shelter_id: shelter_1.id)}
@@ -26,6 +27,9 @@ RSpec.describe Admin::SheltersController do
 
     PetApplication.create!(pet: pet_4, application: application_3)
     PetApplication.create!(pet: pet_5, application: application_3)
+
+    PetApplication.create!(pet: pet_4, application: application_4)
+    PetApplication.create!(pet: pet_5, application: application_4)
   end
 
   it 'can display shelters in reverse alphabetical order' do
@@ -45,7 +49,7 @@ RSpec.describe Admin::SheltersController do
 
   it 'displays all shelters whos pets have pending applications' do
     visit '/admin/shelters'
-
+    
     within("#shelters-with-apps") do
       expect(page).to have_content(shelter_2.name)
       expect(page).to have_content(shelter_3.name)
