@@ -19,7 +19,7 @@
   <%= form.submit "Search" %>
   <%end%>
 <h4> Matches: <% @pets.each do |pet| %> <h4>
-  <p>Pet: <%=pet.name%> <%= link_to "Adopt Me!", "/applications/#{@applicant.id}?add_pet=#{pet.id}" %></p>
+  <p>Pet: <%=pet.name%> <%= button_to "Adopt Me!", "/applications/#{@applicant.id}/pets?add_pet=#{pet.id}", method: :post %></p>
     <%end%>
   <%end%>
 </section>
