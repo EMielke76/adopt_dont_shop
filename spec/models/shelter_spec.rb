@@ -11,6 +11,9 @@ RSpec.describe Shelter, type: :model do
     it { should validate_presence_of(:rank) }
     it { should validate_numericality_of(:rank) }
   end
+  let!(:application_1) {Application.create!(name: "Elora Mielke", street_address: "123 Fake Street", city: "Littleton", state: "CO", zipcode: "80120")}
+  let!(:application_2) {Application.create!(name: "Blair Mielke", street_address: "123 Fake Street", city: "Littleton", state: "CO", zipcode: "80120")}
+  let!(:application_3) {Application.create!(name: "Eric Mielke", street_address: "123 Fake Street", city: "Littleton", state: "CO", zipcode: "80120", status: "Pending", description: "I'm a great guy")}
 
   before(:each) do
     @shelter_1 = Shelter.create(name: 'Aurora shelter', city: 'Aurora, CO', foster_program: false, rank: 9)
@@ -21,6 +24,11 @@ RSpec.describe Shelter, type: :model do
     @pet_2 = @shelter_1.pets.create(name: 'Clawdia', breed: 'shorthair', age: 3, adoptable: true)
     @pet_3 = @shelter_3.pets.create(name: 'Lucille Bald', breed: 'sphynx', age: 8, adoptable: true)
     @pet_4 = @shelter_1.pets.create(name: 'Ann', breed: 'ragdoll', age: 5, adoptable: true)
+
+    PetApplication.create!(pet: @pet_1, application: application_1)
+    PetApplication.create!(pet: @pet_2, application: application_1)
+    PetApplication.create!(pet: @pet_3, application: application_2)
+    PetApplication.create!(pet: @pet_4, application: application_3)
   end
 
   describe 'class methods' do
@@ -72,6 +80,12 @@ RSpec.describe Shelter, type: :model do
       it 'returns a list of shelters in reverse alphabetical order by name' do
         expect(Shelter.reverse_alpha_names).to eq([@shelter_2, @shelter_3, @shelter_1])
       end
-    end 
+    end
+
+    describe '#shelters_with_pending_apps' do
+      it 'returns shelters that have pets w/ pending applications' do
+        expect(Shelter.shelters_with_pending_apps).to eq([@shelter_1])
+      end
+    end
   end
 end
