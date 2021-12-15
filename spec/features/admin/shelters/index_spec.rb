@@ -52,6 +52,5 @@ RSpec.describe Admin::SheltersController do
       expect(page).to_not have_content(shelter_1.name)
       expect(page).to_not have_content(shelter_4.name)
     end
-    save_and_open_page
   end
 end
