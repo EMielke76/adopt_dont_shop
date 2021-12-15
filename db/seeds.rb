@@ -22,9 +22,9 @@ pet_1 = Pet.create!(name: 'Mr. Pirate', breed: 'tuxedo shorthair', age: 5, adopt
 pet_2 = Pet.create!(name: 'Clawdia', breed: 'shorthair', age: 3, adoptable: true, shelter_id: shelter_1.id)
 pet_3 = Pet.create!(name: 'Luna', breed: 'blue heeler', age: 2, adoptable: true, shelter_id: shelter_2.id)
 pet_4 = Pet.create!(name: 'Cici', breed: 'boxer husky', age: 1, adoptable: true, shelter_id: shelter_2.id)
-pet_5 = Pet.create!(name: 'Otis', breed: 'shitpom', age: 1, adoptable: true, shelter_id: shelter_3.id)
-pet_6 = Pet.create!(name: 'Frankie', breed: 'frenchie', age: 1, adoptable: true, shelter_id: shelter_3.id)
-pet_7 = Pet.create!(name: 'Daisy', breed: 'blue heeler', age: 1, adoptable: true, shelter_id: shelter_4.id)
+pet_5 = Pet.create!(name: 'Otis', breed: 'shitpom', age: 4, adoptable: true, shelter_id: shelter_3.id)
+pet_6 = Pet.create!(name: 'Frankie', breed: 'frenchie', age: 2, adoptable: true, shelter_id: shelter_3.id)
+pet_7 = Pet.create!(name: 'Daisy', breed: 'blue heeler', age: 3, adoptable: true, shelter_id: shelter_4.id)
 pet_8 = Pet.create!(name: 'Yoshi', breed: 'muttt', age: 1, adoptable: true, shelter_id: shelter_4.id)
 
 PetApplication.create!(pet: pet_1, application: application_2)
