@@ -67,8 +67,9 @@ RSpec.describe 'Application Show' do
         fill_in(:pet_name, with: "Luna")
         click_on("Search")
       end
+
         expect(page).to have_content(pet_3.name)
-        expect(page).to have_content("Adopt Me!")
+        expect(page).to have_button("Adopt Me!")
 
       within('#search-pet') do
         click_on("Adopt Me!")
@@ -136,6 +137,6 @@ RSpec.describe 'Application Show' do
       expect(page).to have_content(pet_3.name)
       expect(page).to have_content(pet_4.name)
       expect(page).to_not have_content(pet_5.name)
-    end 
+    end
   end
 end

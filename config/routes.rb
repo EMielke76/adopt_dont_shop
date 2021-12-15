@@ -40,9 +40,11 @@ Rails.application.routes.draw do
   get '/applications/new', to: 'applications#new'
   get '/applications/:id', to: 'applications#show'
   post '/applications', to: 'applications#create'
+
+  post '/applications/:id/pets', to: 'pet_applications#create'
   patch '/applications/:id/edit', to: 'applications#update'
 
   namespace :admin do
     resources :shelters, :applications
-  end 
+  end
 end
