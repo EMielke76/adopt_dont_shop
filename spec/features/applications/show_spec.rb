@@ -12,7 +12,7 @@ RSpec.describe 'application show page' do
     PetApplication.create!(pet: pet_1, application: application_1)
     PetApplication.create!(pet: pet_2, application: application_1)
 
-    visit application_path(application_1.id)
+    visit application_path(application_1)
   end
 
   it 'lists the attributes of an applicant and application' do
@@ -39,9 +39,9 @@ RSpec.describe 'application show page' do
       expect(current_path).to eq("/pets/#{pet_1.id}")
     end
 
-    visit application_path(application_1.id)
+    visit application_path(application_1)
 
-    within("pet_#{pet_2.id}") do
+    within("#pet_#{pet_2.id}") do
       expect(page).to have_link("Cici")
       click_on "Cici"
       expect(current_path).to eq("/pets/#{pet_2.id}")

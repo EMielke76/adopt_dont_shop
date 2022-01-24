@@ -5,3 +5,12 @@
 <p>City: <%=@application.city%></p>
 <p>State: <%=@application.state%></p>
 <p>Zip Code: <%=@application.zipcode%></p>
+
+<h2>Pet's Applied For</h2>
+<% @application.pets.each do |pet| %>
+  <section id="pet_<%=pet.id%>"
+    <h4><%=link_to "#{pet.name}", "/pets/#{pet.id}" %></h4>
+  </section>
+<%end%>
+
+<h3>Application Status: <%=@application.status%></h3>
