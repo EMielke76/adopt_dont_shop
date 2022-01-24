@@ -11,9 +11,9 @@ RSpec.describe Shelter, type: :model do
     it { should validate_presence_of(:rank) }
     it { should validate_numericality_of(:rank) }
   end
-  let!(:application_1) {Application.create!(name: "Elora Mielke", street_address: "123 Fake Street", city: "Littleton", state: "CO", zipcode: "80120")}
-  let!(:application_2) {Application.create!(name: "Blair Mielke", street_address: "123 Fake Street", city: "Littleton", state: "CO", zipcode: "80120")}
-  let!(:application_3) {Application.create!(name: "Eric Mielke", street_address: "123 Fake Street", city: "Littleton", state: "CO", zipcode: "80120", status: "Pending", description: "I'm a great guy")}
+  let!(:application_1) {Application.create!(name: "Elora Mielke", address: "123 Fake Street", city: "Littleton", state: "CO", zipcode: "80120")}
+  let!(:application_2) {Application.create!(name: "Blair Mielke", address: "123 Fake Street", city: "Littleton", state: "CO", zipcode: "80120")}
+  let!(:application_3) {Application.create!(name: "Eric Mielke", address: "123 Fake Street", city: "Littleton", state: "CO", zipcode: "80120", status: "Pending", description: "I'm a great guy")}
 
   before(:each) do
     @shelter_1 = Shelter.create(name: 'Aurora shelter', city: 'Aurora, CO', foster_program: false, rank: 9)
